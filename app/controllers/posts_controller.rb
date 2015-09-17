@@ -25,6 +25,31 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 	end
 
+	def edit
+		#post from the ide
+		@post = Post.find(params[:id])
+	end
+
+	def update
+		#find the post by id
+		@post = Post.find(params[:id])
+
+		#if  permit the title and body
+		if @post.update(params[:post].permit(:title, :body))
+			redirect_to	@post
+		else
+			render 'edit'
+		end
+
+	end
+
+	def destroy
+		@post = Post.find(params[:id])
+		@post.destroy
+
+		redirect_to root_path
+	end
+
 	private
 		def post_params
 			params.require(:post).permit(:title, :body)

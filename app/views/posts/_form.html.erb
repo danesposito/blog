@@ -1,0 +1,26 @@
+<%= form_for @post do |f| %>
+	<%#Changed above to @post becuase rails is smart enough to know the difference%>
+	<%#If errors, in a div, h2 there are a x number of errors, then lists it out. Pluralizes makes plural, make a list of all the erros%>
+	<% if @post.errors.any? %>
+		<div id="errors">
+			<h2><%= pluralize(@post.errors.count, "error") %> prevented this post from saving.</h2>
+			<ul>
+				<% @post.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+
+			</ul>
+		</div>
+	<% end %>
+	<p>
+		<%= f.label :title %><br>
+		<%=f.text_field :title%>
+	</p>
+	<p>
+		<%= f.label :body %><br>
+		<%= f.text_area :body%>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>

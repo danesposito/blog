@@ -5,15 +5,19 @@ class PostsController < ApplicationController
 	end
 
 	def new
+		@post = Post.new
 	end
 
 	#to save posts we need to create a create posts
 	def create
 		@post = Post.new(post_params)
 		#Note: rails 4 requires you to explicitly say what parameters you are going to allow
-		@post.save
-
-		redirect_to @post
+		if @post.save
+			redirect_to @post
+		else
+			#render prevents using redirect so you don't lose what is being validated
+			render 'new'
+		end
 	end
 
 	#we are defining @post

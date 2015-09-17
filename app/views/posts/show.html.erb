@@ -1,0 +1,14 @@
+<h1 class="title">
+	<% #returns the title of the post %>
+	<%= @post.title %>
+</h1>
+
+<p class="date">
+	<% #returns the time in terms of time passed, that the post was created %>
+	Submitted <%= time_ago_in_words(@post.created_at) %>
+</p>
+
+<p class="body">
+	<% #returns body of the post %>
+	<%= @post.body %>
+</p>

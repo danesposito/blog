@@ -47,6 +47,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@post.destroy
 
+		#redirects to the index
 		redirect_to root_path
 	end
 

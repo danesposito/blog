@@ -8,7 +8,7 @@
 	<% #returns the time in terms of time passed, that the post was created %>
 	Submitted <%= time_ago_in_words(@post.created_at) %> Ago
 	| <%= link_to 'Edit', edit_post_path(@post) %>
-	| <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?'} %>
+	| <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?'} %>  
 
 </p>
 
@@ -16,4 +16,10 @@
 	<% #returns body of the post %>
 	<%= @post.body %>
 </p>
+<div id="comments">
+	<h2><%= @post.comments.count %> Comments</h2>
+	<%= render @post.comments %>
+	<h3>Add a Comment</h3>
+	<%= render "comments/form" %> 
+</div>
 </div>
